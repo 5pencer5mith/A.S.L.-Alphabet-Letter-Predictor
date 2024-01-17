@@ -1,10 +1,11 @@
+#Install these packages
 import mediapipe as mp
 import cv2
 
 
 draw = mp.solutions.drawing_utils
 detect_hands = mp.solutions.hands
-
+#You may need to adjust the value in video capture (Usually it's 0 or 1) this creates a video object from your webcam
 eye = cv2.VideoCapture(1)
 
 with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5) as hands:
