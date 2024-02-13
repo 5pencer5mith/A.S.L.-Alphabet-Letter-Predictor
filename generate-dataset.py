@@ -1,6 +1,11 @@
 import mediapipe as mp
 import cv2
 import numpy as np
+import sys
+
+# Get command line arguments
+currentLetter = sys.argv[1]
+outputFilename = "dataset-%s.pickle" % currentLetter
 
 # Setting up mediapipe
 draw = mp.solutions.drawing_utils
