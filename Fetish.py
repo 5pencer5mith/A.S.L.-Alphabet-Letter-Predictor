@@ -2,9 +2,11 @@ import mediapipe as mp
 import cv2
 import numpy as np
 
+# Setting up mediapipe
 draw = mp.solutions.drawing_utils
 detect_hands = mp.solutions.hands
 
+# Setting up Video Capture
 eye = cv2.VideoCapture(1)
 if eye is None or not eye.isOpened():
     eye = cv2.VideoCapture(0)
