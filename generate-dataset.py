@@ -2,6 +2,7 @@ import mediapipe as mp
 import cv2
 import numpy as np
 import sys
+import util
 
 # Get command line arguments
 currentLetter = sys.argv[1]
