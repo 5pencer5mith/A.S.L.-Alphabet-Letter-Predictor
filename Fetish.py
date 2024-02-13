@@ -1,12 +1,13 @@
 import mediapipe as mp
 import cv2
 import numpy as np
-import distance
 
 draw = mp.solutions.drawing_utils
 detect_hands = mp.solutions.hands
 
 eye = cv2.VideoCapture(1)
+if eye is None or not eye.isOpened():
+    eye = cv2.VideoCapture(0)
 
 landmark_coords = np.zeros((21, 3))
 
