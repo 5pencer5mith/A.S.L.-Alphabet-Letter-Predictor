@@ -5,7 +5,8 @@ import sys
 
 # Get command line arguments
 currentLetter = sys.argv[1]
-outputFilename = "dataset-%s.pickle" % currentLetter
+datasetVersion = sys.argv[2]
+outputFilename = "dataset-%s-%s.pickle" % (currentLetter, datasetVersion)
 
 # Setting up mediapipe
 draw = mp.solutions.drawing_utils
