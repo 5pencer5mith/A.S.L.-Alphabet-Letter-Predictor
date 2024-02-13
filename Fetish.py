@@ -1,7 +1,7 @@
 import mediapipe as mp
 import cv2
 import numpy as np
-
+#test
 # Setting up mediapipe
 draw = mp.solutions.drawing_utils
 detect_hands = mp.solutions.hands
