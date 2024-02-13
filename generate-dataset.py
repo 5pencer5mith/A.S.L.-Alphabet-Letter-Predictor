@@ -53,6 +53,8 @@ with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5)
                     coords = util.processLandmarks(hand.landmark)
                     # Add to dataset
                     dataset['samples'].append(coords)
+                    # Alert user how many samples have been collected so far
+                    print("Samples collected: %d" % len(dataset['samples']))
         # Display the image with the wireframes
         cv2.imshow('Hand Fetish', img)
         # Increment frame count
