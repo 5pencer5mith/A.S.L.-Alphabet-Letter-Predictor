@@ -67,3 +67,4 @@ eye.release()
 cv2.destroyAllWindows()
 # Save dataset to file
 util.saveToFile(outputFilename, dataset)
+print('Saved to %s' % outputFilename)
