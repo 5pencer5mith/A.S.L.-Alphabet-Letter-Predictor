@@ -10,6 +10,12 @@ currentLetter = sys.argv[1]
 datasetVersion = sys.argv[2]
 outputFilename = "dataset-%s-%s.pickle" % (currentLetter, datasetVersion)
 
+# Collection place for dataset
+dataset = {
+    "letter": currentLetter,
+    "samples": []
+}
+
 # Setting up mediapipe
 draw = mp.solutions.drawing_utils
 detect_hands = mp.solutions.hands
@@ -43,7 +49,10 @@ with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5)
                 draw.draw_landmarks(img, hand, detect_hands.HAND_CONNECTIONS)
                 # This loop gathers x, y, and z coordinates every 10 frames. Stores in landmark_coords array
                 if frameNum % 10 == 0: # only look at every 10 frames
+                    # Process landmarks
                     coords = util.processLandmarks(hand.landmark)
+                    # Add to dataset
+                    dataset['samples'].append(coords)
         # Display the image with the wireframes
         cv2.imshow('Hand Fetish', img)
         # Increment frame count
@@ -54,3 +63,5 @@ with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5)
 # Close modules
 eye.release()
 cv2.destroyAllWindows()
+# Save dataset to file
+util.saveToFile(outputFilename, dataset)
