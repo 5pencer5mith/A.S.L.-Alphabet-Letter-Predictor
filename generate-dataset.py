@@ -23,8 +23,6 @@ if eye is None or not eye.isOpened():
 with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5) as hands:
     # frameNum keeps track of the specific frame
     frameNum = 0
-    # Used later to temporarily hold hand wireframe coords
-    landmark_coords = np.zeros((21, 3))
     # Start looking at the camera
     while eye.isOpened():
         # Get a frame
@@ -45,34 +43,7 @@ with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5)
                 draw.draw_landmarks(img, hand, detect_hands.HAND_CONNECTIONS)
                 # This loop gathers x, y, and z coordinates every 10 frames. Stores in landmark_coords array
                 if frameNum % 10 == 0: # only look at every 10 frames
-                    # Loop through landmarks, and store them in landmark_coords
-                    lm_num = 0
-                    for coords in hand.landmark:
-                        landmark_coords[lm_num] = [coords.x, coords.y, coords.z]
-                        lm_num += 1
-                    # Find bounding box of hand
-                    minx = landmark_coords[0][0]
-                    maxx = landmark_coords[0][0]
-                    miny = landmark_coords[0][1]
-                    maxy = landmark_coords[0][1]
-                    for coords in landmark_coords:
-                        if coords[0] < minx:
-                            minx = coords[0]
-                        if coords[0] > maxx:
-                            maxx = coords[0]
-                        if coords[1] < miny:
-                            miny = coords[1]
-                        if coords[1] > maxy:
-                            maxy = coords[1]
-                    width = maxx - minx
-                    height = maxy - miny
-                    # Create new list of scaled landmarks
-                    convertedCoords = []
-                    for coords in landmark_coords:
-                        convertedCoords.append([
-                            (coords[0] - minx) / width,
-                            (coords[1] - miny) / height
-                        ])
+                    coords = util.processLandmarks(hand.landmark)
         # Display the image with the wireframes
         cv2.imshow('Hand Fetish', img)
         # Increment frame count
