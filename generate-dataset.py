@@ -26,7 +26,7 @@ if eye is None or not eye.isOpened():
     eye = cv2.VideoCapture(0)
 
 # Scan the camera, and detect hands
-with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5) as hands:
+with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5, max_num_hands=1) as hands:
     # frameNum keeps track of the specific frame
     frameNum = 0
     # Start looking at the camera
