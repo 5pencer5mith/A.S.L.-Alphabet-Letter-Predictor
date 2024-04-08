@@ -39,3 +39,12 @@ def processLandmarks(landmarks):
         ])
     # Return converted coords
     return convertedCoords
+# Utilities to help with the model
+def indexOfMax(arr):
+    bestSoFar = arr[0]
+    indexOfBest = 0
+    for i in range(1, len(arr)):
+        if arr[i] > bestSoFar:
+            bestSoFar = arr[i]
+            indexOfBest = i
+    return indexOfBest

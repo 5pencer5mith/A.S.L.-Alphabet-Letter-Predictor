@@ -27,14 +27,20 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.20)
 
 # Train model
 from sklearn.neural_network import MLPClassifier
-mlp = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=10000)
+mlp = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=10000000)
 mlp.fit(X_train, Y_train)
 
 # Test model
+# Generate predictions
 predictions = mlp.predict(X_test)
-predictions = [letters[max( (v, i) for i, v in enumerate(y) )[1]] for y in predictions]
-Y_train = [letters[max( (v, i) for i, v in enumerate(y) )[1]] for y in Y_train]
-comparisons = [1 if y == p else 0 for y, p in zip(Y_train, predictions)]
+# Use max to choose a letter
+predictions = [util.indexOfMax(y) for y in predictions]
+Y_test = [util.indexOfMax(y) for y in Y_test]
+predictions = [letters[y] for y in predictions]
+Y_test = [letters[y] for y in Y_test]
+# Calculate how many predictions were correct
+comparisons = [1 if y == p else 0 for y, p in zip(Y_test, predictions)]
+# Print accuracy
 print("Accuracy: %.3f" % np.mean(comparisons))
 
 # Save model
