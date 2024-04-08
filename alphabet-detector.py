@@ -64,6 +64,3 @@ with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5,
 # Close modules
 eye.release()
 cv2.destroyAllWindows()
-# Save dataset to file
-util.saveToFile(outputFilename, dataset)
-print('Saved to %s' % outputFilename)
