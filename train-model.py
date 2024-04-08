@@ -32,10 +32,10 @@ mlp.fit(X_train, Y_train)
 
 # Test model
 predictions = mlp.predict(X_test)
-
-# Print confusion matrix
-from sklearn.metrics import classification_report, confusion_matrix
-print(classification_report(Y_test,predictions))
+predictions = [letters[max( (v, i) for i, v in enumerate(y) )[1]] for y in predictions]
+Y_train = [letters[max( (v, i) for i, v in enumerate(y) )[1]] for y in Y_train]
+comparisons = [1 if y == p else 0 for y, p in zip(Y_train, predictions)]
+print("Accuracy: %.3f" % np.mean(comparisons))
 
 # Save model
 util.saveToFile('model.pickle', mlp)
