@@ -46,7 +46,7 @@ with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5,
                 # Draw hand wireframe on the image
                 draw.draw_landmarks(img, hand, detect_hands.HAND_CONNECTIONS)
                 # This loop gathers x, y, and z coordinates every 10 frames. Stores in landmark_coords array
-                if frameNum % 10 == 0: # only look at every 10 frames
+                if frameNum % 5 == 0: # only look at every 5 frames
                     # Process landmarks
                     coords = np.array(util.processLandmarks(hand.landmark))
                     # Use trained model to classify hand
@@ -54,6 +54,8 @@ with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5,
                     prediction = letters[util.indexOfMax(prediction)]
                     # Print letter to console
                     print(prediction)
+                    cv2.putText(img, prediction, (20, img.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
+
         # Display the image with the wireframes
         cv2.imshow('Hand Fetish', img)
         # Increment frame count
