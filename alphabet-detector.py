@@ -49,7 +49,7 @@ with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5,
                 draw.draw_landmarks(img, hand, detect_hands.HAND_CONNECTIONS)
                 # This loop gathers x, y, and z coordinates every 10 frames. Stores in landmark_coords array
 
-                if frameNum % 10 == 0: # only look at every 5 frames
+                if frameNum % 10 == 0: # only look at every 10 frames
                     # Process landmarks
                     coords = np.array(util.processLandmarks(hand.landmark))
                     # Use trained model to classify hand
