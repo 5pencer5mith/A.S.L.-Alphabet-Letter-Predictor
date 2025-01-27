@@ -7,6 +7,8 @@ datasets = []
 for filepath in glob.iglob('datasets/*.pickle'):
     datasets.append(util.loadFromFile(filepath))
 
+print(len(datasets))
+
 # Combine datasets
 X = np.array([sample for dataset in datasets for sample in dataset['samples']])
 Y = np.array([letter for dataset in datasets for letter in [dataset['letter'] for sample in dataset['samples']]])

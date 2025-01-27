@@ -62,7 +62,7 @@ with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5,
         cv2.putText(img, prediction, (20, img.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
 
         # Display the image with the wireframes
-        cv2.imshow('Hand Fetish', img)
+        cv2.imshow('A.S.L. Alphabet Letter Detection', img)
         # Increment frame count
         frameNum += 1
         # Quit if the q key is pressed
