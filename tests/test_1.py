@@ -1,10 +1,17 @@
 import nltk
 from nltk.corpus import words
+import os
+from dotenv import load_dotenv
 
 def get_n_sized_words(n):
 
+    load_dotenv()
+    os.environ["NLTK_DATA"] = "/Volumes/SpencersDrive/undergraduate_research/nltk_data"
+
+
     try:
         word_list = words.words()
+        print(type(word_list))
     except LookupError:
         print("Corpus not found")
         return None
@@ -30,10 +37,11 @@ available_words = get_n_sized_words(sub_size)
 if not available_words:
     print("I broke :(")
 
-if sub_str in available_words:
-    print("Ohhhhh babyy")
 else:
-    print("Darn")
+    if sub_str in available_words:
+        print("Ohhhhh babyy")
+    else:
+        print("Darn")
 
 
 

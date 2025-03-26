@@ -41,7 +41,7 @@ with detect_hands.Hands(min_detection_confidence=.8, min_tracking_confidence=.5)
 
                     print(landmark_coords)
 
-        cv2.imshow('Hand Fetish', img)
+        cv2.imshow('Hand Detection', img)
 
         frameNum += 1
 
